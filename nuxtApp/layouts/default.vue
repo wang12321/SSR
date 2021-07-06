@@ -16,7 +16,6 @@
 <script>
 import Navbar from '@/components/layout/Navbar'
 import Sidebar from '@/components/layout/Sidebar'
-import { routerFun } from '@/router/routerName'
 import { getToken } from '@/utils/auth' // get token from cookie
 
 export default {
@@ -41,7 +40,6 @@ export default {
       return this.$store.state.app.device
     },
     classObj () {
-      // console.log(this.sidebar)
       return {
         hideSidebar: !this.sidebar.opened,
         openSidebar: this.sidebar.opened,
@@ -51,14 +49,7 @@ export default {
     }
   },
   mounted () {
-    if (getToken()) {
-      this.routerData = routerFun(this.$router.options.routes)
-      this.$store.dispatch('user/getInfo').then((res) => {
-        this.$store.dispatch('permission/generateRoutes', { router: this.routerData, roles: res }).then((row) => {
-          console.log(2222, row)
-        })
-      })
-    } else {
+    if (!getToken()) {
       this.$router.push({ path: '/login' })
     }
   }

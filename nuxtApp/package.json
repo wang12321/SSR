@@ -36,12 +36,16 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.12.1",
     "fibers": "^5.0.0",
+    "fuse.js": "^6.4.6",
     "husky": "^6.0.0",
     "jest": "^27.0.5",
+    "path-to-regexp": "^6.2.0",
     "sass": "^1.35.1",
     "sass-loader": "^10.2.0",
+    "screenfull": "^5.1.0",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
+    "svg-sprite-loader": "^6.0.9",
     "vue-jest": "^3.0.4"
   }
 }

@@ -1,16 +1,15 @@
 <template>
-  <div class="navbar">
-    <!--        <hamburger @toggleClick="toggle" :isActive="!collapse"></hamburger>-->
+  <div class="navbar" :style="{'background':navbarBackground }">
     <div>
-      <!--      <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />-->
-      <!--      <breadcrumb class="breadcrumb-container" />-->
+      <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+      <breadcrumb class="breadcrumb-container" />
       <div class="right-menu">
-        <!--        <template v-if="device!=='mobile'">-->
-        <!--          <search v-if="searchShow" id="header-search" class="right-menu-item" :style="{'color':navbarColor }" />-->
-        <!--          <screenfull id="screenfull" class="right-menu-item hover-effect" :style="{'color':navbarColor }" />-->
-        <!--        </template>-->
+        <template v-if="device!=='mobile'">
+          <search v-if="searchShow" id="header-search" class="right-menu-item" :style="{'color':navbarColor }" />
+          <screenfull id="screenfull" class="right-menu-item hover-effect" :style="{'color':navbarColor }" />
+        </template>
         <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
-          <div class="avatar-wrapper">
+          <div class="avatar-wrapper" :style="{'color':navbarColor }">
             <span>{{ name }}</span>
             <i class="el-icon-caret-bottom" />
           </div>
@@ -27,16 +26,19 @@
 
 <script>
 import { mapGetters } from 'vuex'
-// import Breadcrumb from '@/components/Breadcrumb'
-// import Hamburger from '@/components/Hamburger'
-// import Screenfull from '@/components/Screenfull'
-// import Search from '@/components/HeaderSearch'
+import Breadcrumb from '@/components/Breadcrumb'
+import Hamburger from '@/components/hamburger'
+import Screenfull from '@/components/Screenfull'
+import Search from '@/components/HeaderSearch'
 // import { setIsUseMasterApiKey, getIsUseMasterApiKey } from '@/utils/auth'
 // import Logo from './Sidebar/Logo'
 
 export default {
   components: {
-
+    Hamburger,
+    Breadcrumb,
+    Screenfull,
+    Search
   },
   data () {
     return {
@@ -48,31 +50,19 @@ export default {
       'sidebar',
       'name',
       'device'
-    ])
-    // LayoutClass () {
-    //   return !this.Layout && this.showLogo ? 'navbarLogo' : ''
-    // },
-    // showLogo () {
-    //   return this.$store.state.settings.sidebarLogo
-    // },
-    // breadcrumb () {
-    //   return this.$store.state.settings.breadcrumb
-    // },
-    // searchShow () {
-    //   return this.$store.state.settings.IsSearch
-    // },
-    // Layout () {
-    //   return this.$store.state.settings.Layout
-    // },
-    // navbarBackground () {
-    //   return this.$store.state.settings.navbarBackground
-    // },
-    // navbarColor () {
-    //   return this.$store.state.settings.navbarColor
-    // },
-    // isSwitchEnvironment () {
-    //   return this.$store.state.settings.isSwitchEnvironment
-    // }
+    ]),
+    breadcrumb () {
+      return this.$store.state.settings.breadcrumb
+    },
+    searchShow () {
+      return this.$store.state.settings.IsSearch
+    },
+    navbarBackground () {
+      return this.$store.state.settings.navbarBackground
+    },
+    navbarColor () {
+      return this.$store.state.settings.navbarColor
+    }
   },
   methods: {
     switchAction () {

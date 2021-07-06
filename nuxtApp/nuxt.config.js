@@ -22,7 +22,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/element-ui',
-    '~/plugins/route'
+    '~/plugins/route',
+    '@/plugins/svg-icon' // 注册svg插件文件
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -56,6 +57,26 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [/^element-ui/]
+    transpile: [/^element-ui/],
+    extend (config, ctx) {
+      // 排除 nuxt 原配置的影响,Nuxt 默认有vue-loader,会处理svg,img等
+      // 找到匹配.svg的规则,然后将存放svg文件的目录排除
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+      // eslint-disable-next-line no-undef
+      svgRule.exclude = [resolve('assets/icons/svg')]
+      // 添加loader规则
+      config.module.rules.push({
+        test: /\.svg$/, // 匹配.svg
+        // eslint-disable-next-line no-undef
+        include: [resolve('assets/icons/svg')], // 将存放svg的目录加入到loader处理目录
+        use: [{ loader: 'svg-sprite-loader', options: { symbolId: 'icon-[name]' } }]
+      })
+    }
   }
+}
+// eslint-disable-next-line nuxt/no-cjs-in-config
+const path = require('path')
+
+function resolve (dir) {
+  return path.join(__dirname, dir)
 }
