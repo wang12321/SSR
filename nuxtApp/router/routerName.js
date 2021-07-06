@@ -130,7 +130,7 @@ export const routerName = {
         name: '用户管理',
         icon: 'form',
         index: 1,
-        permission: [1, 2, 3],
+        permission: [],
         // isID: '/:id',
         newTime: '2021-07-20'
       },
@@ -148,6 +148,14 @@ export const routerName = {
 
 // 如果是三级菜单，自行配置
 export const constantRoutes = [
+  // {
+  //   name: 'error',
+  //   meta: { title: '错误', permissionArray: [1, 2, 3], icon: 'error', newTime: new Date(), noCache: false },
+  //   icon: 'form',
+  //   path: '/error',
+  //   children: [],
+  //   hidden: true
+  // }
   // {
   // icon: 'form',
   // url: 'system',

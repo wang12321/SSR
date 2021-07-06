@@ -54,6 +54,9 @@ export default {
       if (!this.isDashboard(first)) {
         matched = [{ path: '/', meta: { title: '首页' } }].concat(matched)
       }
+      if (this.$route.path === '/error') {
+        matched = matched.concat([{ path: '/error', meta: { title: '错误' } }])
+      }
 
       // 处理动态显示title
       if (process.browser) {

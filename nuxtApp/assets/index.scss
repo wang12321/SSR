@@ -73,3 +73,24 @@ div:focus {
 .el-popper[x-placement^="bottom"] {
   margin-top: 0 !important;
 }
+.el-menu--horizontal>.el-submenu .el-submenu__title {
+  color: #fff ;
+}
+.el-menu--horizontal>.el-submenu .el-submenu__title:hover {
+  background-color: rebeccapurple;
+  color: #fff;
+}
+.el-menu--horizontal>.el-submenu.is-active .el-submenu__title {
+  border-bottom: none;
+  color: red;
+}
+.el-menu--horizontal>.el-submenu:hover .el-submenu__title {
+  color: #FFF;
+}
+
+.el-menu-demo{
+  .el-submenu__title i {
+    color: #FFF;
+  }
+}
+
